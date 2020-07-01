@@ -1,4 +1,3 @@
----
 version: '3'
 
 services:
@@ -6,31 +5,24 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: concourse
-      POSTGRES_USER:
-      POSTGRES_PASSWORD:
+      POSTGRES_PASSWORD: concourse_pass
+      POSTGRES_USER: concourse_user
       PGDATA: /database
 
-  concourse-web:
+  concourse:
     image: concourse/concourse
-    command: web
+    command: quickstart
     privileged: true
     depends_on: [concourse-db]
-    volumes: ["./keys/web:/concourse-keys"]
-    ports: ["8080:8080","2222:2222"]
+    ports: ["8080:8080"]
     environment:
       CONCOURSE_POSTGRES_HOST: concourse-db
-      CONCOURSE_POSTGRES_USER:
-      CONCOURSE_POSTGRES_PASSWORD:
+      CONCOURSE_POSTGRES_USER: concourse_user
+      CONCOURSE_POSTGRES_PASSWORD: concourse_pass
       CONCOURSE_POSTGRES_DATABASE: concourse
-      CONCOURSE_EXTERNAL_URL: http://localhost:8080
+      CONCOURSE_EXTERNAL_URL: http://esterfreesia.com:8080
       CONCOURSE_ADD_LOCAL_USER: test:test
       CONCOURSE_MAIN_TEAM_LOCAL_USER: test
-
-  concourse-worker:
-    image: concourse/concourse
-    command: worker
-    privileged: true
-    depends_on: [concourse-web]
-    volumes: ["./keys/worker:/concourse-keys"]
-    environment:
-      CONCOURSE_TSA_HOST: concourse-web:2222
+      CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
+      CONCOURSE_CLIENT_SECRET: Y29uY291cnNlLXdlYgo=
+      CONCOURSE_TSA_CLIENT_SECRET: Y29uY291cnNlLXdvcmtlcgo=

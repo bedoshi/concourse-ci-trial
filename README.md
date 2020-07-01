@@ -5,8 +5,9 @@
 ### docker/docker-compose のインストール
 調べればいくらでも出てくるので勝手にやってください。
 ### Concourseの立ち上げ
-1. ssh-key の作成
+1. docker-compose で立ち上げる
 ```
-./generate.sh --use-pem
+docker-compose up -d
 ```
+
 
