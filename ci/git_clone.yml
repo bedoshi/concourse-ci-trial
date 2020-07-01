@@ -1,0 +1,16 @@
+resources:
+- name: git-clone-tutorial
+  type: git
+  source:
+    uri: https://github.com/bedoshi/Studying.git
+    branch: master
+
+jobs:
+- name: cloning repository
+  public: true
+  plan:
+  - get: git-clone-tutorial
+  - task: build-repository-files
+    files: Studying/build.yml
+
+
