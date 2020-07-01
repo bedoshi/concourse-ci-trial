@@ -1,0 +1,14 @@
+resources: # 下の Job の get で参照される。
+- name: resource-tutorial # resource の名前、このディテクトリに clone するので後で file で指定出来る。
+  type: git # git clone で取ってくるリソース
+  source:
+    uri: https://github.com/nitram509/concourse-java-maven-test-prj.git
+    branch: master
+
+jobs:
+- name: job-hello-world
+  public: true
+  plan:
+  - get: resource-tutorial # 一番目の Step (Get): この名前のディレクトリに resource-tutorial を取得する。
+  - task: hello-world # 二番目の Step (Task)
+    file: resource-tutorial/pipeline.yml # config の代わりに task を指定すると、Concourse 設定ファイルに書かれた Task を実行する。
