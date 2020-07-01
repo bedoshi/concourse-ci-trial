@@ -25,4 +25,20 @@ docker-compose up -d
 - password: admin
 1. fly のインストール
 - ブラウザでアクセスした際にDLリンクを確認して、wget等で確認するとベネ
-
+## Concourse-ci の操作
+1. fly でログイン(cli tool)
+```
+fly -t concourseci login
+```
+1. taskの実行
+```
+fly -t concourseci execute -c ci/sample.yml
+```
+1. pipeline の登録
+```
+fly -t concourseci set-pipeline -c ci/pipeline.yml -p hello-world
+```
+1. 画面から実行
+- ブラウザでアクセス後、ログインする
+- 前述で追加したパイプラインが存在するので、それをクリックする
+- 画面右上からプラスボタンを押下してビルドする
