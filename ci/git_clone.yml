@@ -10,7 +10,3 @@ jobs:
   public: true
   plan:
   - get: git-clone-tutorial
-  - task: build-repository-files
-    files: Studying/build.yml
-
-
