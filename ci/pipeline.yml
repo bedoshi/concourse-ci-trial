@@ -1,0 +1,13 @@
+jobs:
+- name: job-hello-world # Job の名前
+  public: true # true にするとビルドログが認証なしで見れる
+  plan: # 実行したい [Steps](https://concourse-ci.org/steps.html) の列を書く
+  - task: hello-world # [Task](https://concourse-ci.org/tasks.html) の名前
+    config: # Task の内容
+      platform: linux
+      image_resource: # task_hello_world.yml と同じ。
+        type: docker-image
+        source: {repository: busybox}
+      run:
+        path: echo
+        args: [hello world]
