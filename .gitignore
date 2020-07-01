@@ -1,1 +1,7 @@
-keys/**/.*[^.gitignore]
+keys/**/*/authorized_worker_keys
+keys/**/*/session_signing_key
+keys/**/*/session_signing_key.pub
+keys/**/*/tsa_host_key
+keys/**/*/tsa_host_key.pub
+keys/**/*/worker_key
+keys/**/*/worker_key.pub
